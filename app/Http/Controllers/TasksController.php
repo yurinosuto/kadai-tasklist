@@ -120,7 +120,11 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
+    {   $task = Task::find($id);
+        $task->delete();
+
+        return redirect('/');
+
 
         //
     }
