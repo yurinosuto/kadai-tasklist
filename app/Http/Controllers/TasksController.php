@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Task; // 追加
 
 class TasksController extends Controller
 {
@@ -15,7 +16,12 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {  $tasks = Task::all();
+
+        return view('tasks.index', [
+            'tasks' => $tasks,
+        ]);
+ 
         //
     }
 
@@ -58,7 +64,12 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    { $task = Task::find($id);
+
+        return view('tasks.show', [
+            'task' => $task,
+        ]);
+
         //
     }
 
