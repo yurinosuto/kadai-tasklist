@@ -48,13 +48,16 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {  $task = new Task;
+    {   $this->validate($request, [
+            'content' => 'required|max:255',
+        ]);
+
+        $task = new Task;
         $task->content = $request->content;
         $task->save();
 
         return redirect('/');
 
-        //
     }
 
     /**
@@ -97,11 +100,16 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   $task = Task::find($id);
+    {  $this->validate($request, [
+            'content' => 'required|max:255',
+        ]);
+        
+        $task = Task::find($id);
         $task->content = $request->content;
         $task->save();
 
         return redirect('/');
+   
         //
     }
 
